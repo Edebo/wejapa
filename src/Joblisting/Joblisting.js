@@ -30,7 +30,6 @@ export class Joblisting extends Component {
   };
   render() {
     const { data, loading } = this.state;
-    console.log(data);
     return (
       <div className='container mt-5'>
         <div className='row'>

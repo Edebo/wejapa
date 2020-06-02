@@ -45,10 +45,9 @@ const Login = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password, submitting);
 
     setSubmitting(true);
-    console.log("i got here", submitting);
+
     signin({ email, password })
       .then((res) => {
         authenticate(res.data);

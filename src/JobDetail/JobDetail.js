@@ -25,7 +25,7 @@ export class JobDetail extends Component {
     });
     try {
       let res = await getJob(this.props.match.params.id);
-      console.log(res.data.data);
+
       this.setState({
         data: res.data.data,
         loading: false,
