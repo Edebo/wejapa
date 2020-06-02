@@ -12,7 +12,7 @@ const NotFound = () => {
         </div>
 
         <Link to='/' className='text-center'>
-          Go to back
+          Go to site
         </Link>
       </div>
     </div>

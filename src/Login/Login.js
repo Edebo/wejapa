@@ -3,16 +3,16 @@ import "./Login.css";
 import bkg from "../assets/images/map.svg";
 import logo from "../assets/images/logo.svg";
 import waiting from "../assets/images/waiting.gif";
-import { signin, authenticate } from "../Services/Auth";
-import { Redirect, useHistory } from "react-router-dom";
+import { signin, authenticate, isAuth } from "../Services/Auth";
+import { Redirect, useHistory, withRouter } from "react-router-dom";
 
 const Login = () => {
-  let history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isEmail, setIsEmail] = useState("");
   const [isPassword, setIsPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const history = useHistory();
 
   const handleChange = (e) => {
     if (e.target.name === "email") {
@@ -23,6 +23,8 @@ const Login = () => {
       setPassword(e.target.value);
     }
   };
+  let emailReg = /^ (([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  let passReg = /^\w{3,}$/;
 
   const handleBlur = (e) => {
     if (e.target.name === "email") {
@@ -36,8 +38,7 @@ const Login = () => {
 
   const validate = () => {
     let errors = {};
-    let emailReg = /^ (([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\.[0-9]{1, 3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    let passReg = /^\w{3,}$/;
+
     setIsEmail(emailReg.test(email));
     setIsPassword(passReg.test(password));
   };
@@ -45,15 +46,12 @@ const Login = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(email, password, submitting);
-    // validate();
-    // if (!isEmail || !isPassword) {
-    //   return;
-    // }
 
     setSubmitting(true);
     console.log("i got here", submitting);
     signin({ email, password })
       .then((res) => {
+        authenticate(res.data);
         setSubmitting(false);
         history.push("/");
       })
@@ -61,13 +59,14 @@ const Login = () => {
   };
   return (
     <div className='login' style={{ backgroundImage: 'url("' + bkg + '")' }}>
+      {isAuth() ? <Redirect to='/' /> : null}
       <div className='align'>
-        <div class='grid align__item'>
-          <div class='register'>
+        <div className='grid align__item'>
+          <div className='register'>
             <img src={logo} alt='Wejapa Logo' />
             <h2>Log in</h2>
             <form onSubmit={onSubmit} class='form'>
-              <div class='form__field'>
+              <div className='form__field'>
                 <input
                   type='email'
                   name='email'
@@ -75,10 +74,11 @@ const Login = () => {
                   onChange={(e) => {
                     handleChange(e);
                   }}
+                  pattern={emailReg}
                 />
               </div>
 
-              <div class='form__field'>
+              <div className='form__field'>
                 <input
                   type='password'
                   name='password'
@@ -89,7 +89,7 @@ const Login = () => {
                 />
               </div>
 
-              <div class='form__field'>
+              <div className='form__field'>
                 <button type='submit'>
                   {submitting ? (
                     <img src={waiting} alt='submitting icon' />

@@ -5,6 +5,7 @@ import Login from "./Login/Login";
 import Dashboard from "./Dashboard/Dashboard";
 import JobDetail from "./JobDetail/JobDetail";
 import NotFound from "./NotFound/NotFound";
+import Profile from "./Profile/Profile";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path='/login' exact component={Login} />
           <PrivateRoute path='/' exact component={Dashboard} />
           <PrivateRoute path='/jobs/:id' exact component={JobDetail} />
+          <PrivateRoute path='/profile' exact component={Profile} />
           <Route path='*' component={NotFound} />
           {/* <Route /> */}
         </Switch>

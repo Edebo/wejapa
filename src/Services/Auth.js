@@ -2,17 +2,7 @@ import axios from "axios";
 import { api } from "../constant";
 
 export const signin = async (data) => {
-  axios
-    .post(`${api}/developer/login`, data)
-    .then((res) => {
-      console.log(res.data);
-      authenticate(res.data);
-      return true;
-    })
-    .catch((error) => {
-      console.log(error);
-      return false;
-    });
+  return axios.post(`${api}/developer/login`, data);
 };
 
 export const authenticate = (data) => {
