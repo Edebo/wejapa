@@ -16,7 +16,7 @@ function App() {
           <PrivateRoute path='/' exact component={Dashboard} />
           <PrivateRoute path='/jobs/:id' exact component={JobDetail} />
           <PrivateRoute path='/profile' exact component={Profile} />
-          <Route path='*' component={NotFound} />
+          <Route path='/*' component={NotFound} />
           {/* <Route /> */}
         </Switch>
       </Router>
