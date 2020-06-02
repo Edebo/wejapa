@@ -4,7 +4,7 @@ import PrivateRoute from "./PrivateRoute";
 import Login from "./Login/Login";
 import Dashboard from "./Dashboard/Dashboard";
 import JobDetail from "./JobDetail/JobDetail";
-import { isAuth } from "./Services/Auth";
+import NotFound from "./NotFound/NotFound";
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
           <Route path='/login' exact component={Login} />
           <PrivateRoute path='/' exact component={Dashboard} />
           <PrivateRoute path='/jobs/:id' exact component={JobDetail} />
+          <Route path='*' component={NotFound} />
           {/* <Route /> */}
         </Switch>
       </Router>

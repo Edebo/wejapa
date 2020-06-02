@@ -44,7 +44,9 @@ export class JobDetail extends Component {
       <div>
         <Header />
         {loading ? (
-          <Loader />
+          <div className='my-5 text-center'>
+            <Loader />
+          </div>
         ) : (
           <div className='card mt-5'>
             <div className='top ml-3'>

@@ -93,10 +93,3 @@
   font-weight: bold;
   font-size: 2em;
 }
-.loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 600px;
-  width: 100%;
-}

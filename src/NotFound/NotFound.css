@@ -1,0 +1,15 @@
+.notfound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #041705;
+  width: 100vw;
+  height: 100vh;
+}
+
+.notfound a {
+  color: white;
+}
+.notfound a:hover {
+  color: white;
+}
