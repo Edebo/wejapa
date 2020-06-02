@@ -15,7 +15,6 @@ export class JobDetail extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props.match.params.id);
     this.fetchJobs();
   }
 
