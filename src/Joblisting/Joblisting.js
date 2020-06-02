@@ -21,7 +21,7 @@ export class Joblisting extends Component {
     });
     try {
       let res = await allJobs();
-      console.log(res.data.data);
+
       this.setState({
         data: res.data.data,
         loading: false,
