@@ -55,7 +55,9 @@ const Login = () => {
         setSubmitting(false);
         history.push("/");
       })
-      .catch((e) => {});
+      .catch((e) => {
+        setSubmitting(false);
+      });
   };
   return (
     <div className='login' style={{ backgroundImage: 'url("' + bkg + '")' }}>
@@ -74,7 +76,7 @@ const Login = () => {
                   onChange={(e) => {
                     handleChange(e);
                   }}
-                  pattern={emailReg}
+                  required
                 />
               </div>
 
@@ -86,6 +88,7 @@ const Login = () => {
                   onChange={(e) => {
                     handleChange(e);
                   }}
+                  required
                 />
               </div>
 
